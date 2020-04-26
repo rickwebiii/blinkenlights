@@ -18,7 +18,7 @@ fpga_bitstream(
     "const.xdc"
   ],
   topEntity = "topEntity",
-  optimize = False
+  optimize = True
 )
 
 clash_to_verilog(
