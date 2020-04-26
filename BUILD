@@ -4,15 +4,14 @@ load(
 )
 load(
   "@fpga_rules//clash:rules.bzl",
-  "clash_to_vhdl"
+  "clash_to_verilog"
 )
 
 
 fpga_bitstream(
   name = "blinkenlights",
   srcs = [
-    "vhdl/BlinkenLights/topentity.vhdl",
-    "vhdl/BlinkenLights/blinkenlights_types.vhdl"
+    ":blinkenlights_clash"
   ],
   part = "xc7z020clg400-1",
   constraints = [
@@ -22,14 +21,13 @@ fpga_bitstream(
   optimize = False
 )
 
-clash_to_vhdl(
+clash_to_verilog(
   name = "blinkenlights_clash",
   srcs = [
     "BlinkenLights.hs"
   ],
   outputs = [
-    "vhdl/BlinkenLights/blinkenlights_types.vhdl",
-    "vhdl/BlinkenLights/topentity.vhdl",
+    "verilog/BlinkenLights/topEntity.v"
   ],
   top_entity = "BlinkenLights.hs"
 )
